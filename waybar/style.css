@@ -1,0 +1,330 @@
+/* ---------------------------------------
+ * ryodof's waybar config - Catppuccin Mocha
+ * --------------------------------------- */
+
+* {
+    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* ---------------------------------------
+ * Catppuccin Mocha colors
+ * --------------------------------------- */
+
+@define-color foreground #CDD6F4;
+@define-color background #1E1E2E;
+@define-color cursor #F5E0DC;
+
+@define-color color0 #45475A;
+@define-color color1 #F38BA8;
+@define-color color2 #A6E3A1;
+@define-color color3 #F9E2AF;
+@define-color color4 #89B4FA;
+@define-color color5 #F5C2E7;
+@define-color color6 #94E2D5;
+@define-color color7 #BAC2DE;
+@define-color color8 #585B70;
+@define-color color9 #F38BA8;
+@define-color color10 #A6E3A1;
+@define-color color11 #F9E2AF;
+@define-color color12 #89B4FA;
+@define-color color13 #F5C2E7;
+@define-color color14 #94E2D5;
+@define-color color15 #A6ADC8;
+
+/* ---------------------------------------
+ * styles
+ * --------------------------------------- */
+
+window#waybar {
+    background-color: rgba(30, 30, 46, 0.9);
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+}
+
+#window {
+    font-family: "JetBrainsMono Nerd Font Mono", monospace;
+    color: @foreground;
+}
+
+button {
+    border: none;
+    border-radius: 0;
+}
+
+button:hover {
+    background: inherit;
+}
+
+#workspaces {
+    background: transparent;
+    margin: 5px 1px 6px 1px;
+    padding: 0px 1px;
+    border-radius: 15px;
+    font-weight: bold;
+    font-style: normal;
+    opacity: 0.8;
+    font-size: 16px;
+    color: @color5;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button {
+    padding: 0px 5px;
+    margin: 4px 3px;
+    border-radius: 15px;
+    color: @color5;
+    background-color: @color0;
+    transition: all 0.3s ease-in-out;
+    opacity: 0.6;
+}
+
+#workspaces button.active {
+    color: @background;
+    background: @color5;
+    border-radius: 15px;
+    min-width: 40px;
+    transition: all 0.3s ease-in-out;
+    opacity: 1;
+}
+
+#workspaces button.urgent {
+    background-color: @color1;
+    color: @background;
+    opacity: 1;
+}
+
+#workspaces button:hover {
+    color: @background;
+    background: @color5;
+    border-radius: 15px;
+    opacity: 0.8;
+}
+
+#mode {
+    background-color: transparent;
+    border-bottom: 3px solid @foreground;
+}
+
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#scratchpad,
+#mpd {
+    padding: 0 10px;
+    color: @foreground;
+}
+
+#window,
+#workspaces {
+    margin: 0 4px;
+}
+
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}
+
+#clock {
+    background-color: transparent;
+    color: @color7;
+}
+
+#battery {
+    background-color: transparent;
+    color: @foreground;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @color2;
+    background-color: transparent;
+}
+
+@keyframes blink {
+    to {
+        background-color: @color1;
+        color: @background;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: transparent;
+    color: @color1;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: @background;
+}
+
+#cpu {
+    background-color: transparent;
+    color: @color2;
+}
+
+#memory {
+    background-color: transparent;
+    color: @color6;
+}
+
+#disk {
+    background-color: transparent;
+    color: @color4;
+}
+
+#backlight {
+    background-color: transparent;
+    color: @color3;
+}
+
+#network {
+    background-color: transparent;
+    color: @color4;
+}
+
+#network.disconnected {
+    color: @color1;
+}
+
+#pulseaudio {
+    background-color: transparent;
+    color: @foreground;
+}
+
+#pulseaudio.muted {
+    background-color: transparent;
+    color: @color1;
+}
+
+#wireplumber {
+    background-color: transparent;
+    color: @foreground;
+}
+
+#wireplumber.muted {
+    background-color: @color1;
+}
+
+#custom-media {
+    background-color: @color2;
+    color: @background;
+    min-width: 100px;
+}
+
+#custom-media.custom-spotify {
+    background-color: @color2;
+}
+
+#custom-media.custom-vlc {
+    background-color: @color3;
+}
+
+#temperature {
+    background-color: transparent;
+    color: @color3;
+}
+
+#temperature.critical {
+    color: @color1;
+}
+
+#tray {
+    background-color: transparent;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @color1;
+}
+
+#idle_inhibitor {
+    background-color: @color0;
+    color: @foreground;
+}
+
+#idle_inhibitor.activated {
+    background-color: @foreground;
+    color: @background;
+}
+
+#mpd {
+    background-color: @color2;
+    color: @background;
+}
+
+#mpd.disconnected {
+    background-color: @color1;
+}
+
+#mpd.stopped {
+    background-color: @color8;
+}
+
+#mpd.paused {
+    background-color: @color10;
+}
+
+#language {
+    background: transparent;
+    color: @foreground;
+    padding: 5px;
+    margin: 5px;
+    min-width: 16px;
+}
+
+#keyboard-state {
+    background: transparent;
+    color: @foreground;
+    padding: 0 0px;
+    margin: 0 5px;
+    min-width: 16px;
+}
+
+#keyboard-state > label {
+    padding: 0 5px;
+}
+
+#keyboard-state > label.locked {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+#scratchpad.empty {
+    background-color: transparent;
+}
+
+#custom-power {
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+    margin-right: 4px;
+    border-radius: 8px;
+    min-width: 24px;
+    color: @color1;
+}
